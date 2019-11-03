@@ -4,6 +4,7 @@ import React from 'react';
 import classes from './shop.module.css';
 import Filter from '../../components/filter/Filter';
 import ListItems from '../../components/list-items/ListItems';
+import Input from '../../components/input/Input';
 
 class Shop extends React.Component {
   state = {
@@ -66,18 +67,27 @@ class Shop extends React.Component {
   }
 
   render() {
-    return (<div className={classes.Shop}>
-      <div className={classes.SearchContainer}>
-        <input type="text" placeholder="[Ctrl][L] or [Ctrl][Rtn] to search"/>
-      </div>
-      <div className={classes.FilterContainer}>
-        <Filter tree={this.state.filterTree} checkTagHandler={this.checkTagHandler}/>
-      </div>
-      <div className={classes.ListContainer}>
-        <ListItems items={this.state.items.filter(item => {
-          if (this.state.checkedTags.length === 0) return true;
-          else return this.state.checkedTags.every(tag => item.tags.map(itemTag => itemTag.toLowerCase()).indexOf(tag.toLowerCase()) !== -1)
-        })}/>
+    return (<div className={classes.ShopBorder}>
+      <div className={classes.Shop}>
+        <div className={classes.SearchContainer}>
+          <div className={classes.InputContainer}>
+            <Input type="text" placeholder="[Ctrl][L] or [Ctrl][Rtn] to search"/>
+          </div>
+          <div className={classes.FilterListContainer}>
+            <div className={classes.FilterContainer}>
+              <Filter tree={this.state.filterTree} checkTagHandler={this.checkTagHandler} />
+            </div>
+            <div className={classes.ListContainer}>
+              <ListItems items={this.state.items.filter(item => {
+                if (this.state.checkedTags.length === 0) return true;
+                else return this.state.checkedTags.every(tag => item.tags.map(itemTag => itemTag.toLowerCase()).indexOf(tag.toLowerCase()) !== -1)
+              })}/>
+            </div>
+          </div>
+        </div>
+        <div className={classes.DetailsContainer}>
+
+        </div>
       </div>
     </div>);
   }

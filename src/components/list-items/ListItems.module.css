@@ -4,6 +4,8 @@
   padding-left: 0;
   margin: 0;
   flex-wrap: wrap;
+  background-color: #0d1414;
+  border-radius: 3px;
 }
 
 .ListItems > li {
