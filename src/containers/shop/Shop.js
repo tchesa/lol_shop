@@ -19,7 +19,14 @@ class Shop extends React.Component {
         items: Object.keys(response.data.data).map(key => ({
           ...response.data.data[key],
           id: key,
-        })).sort((a, b) => a.gold.total < b.gold.total ? -1 : 1),
+        })).filter(item => {
+          const notInStore = item.hasOwnProperty('inStore') && !item.inStore;
+          // const hideFromAll = item.hasOwnProperty('hideFromAll') && item.hideFromAll;
+          const championRequired = item.hasOwnProperty('requiredChampion');
+          const allyRequired = item.hasOwnProperty('requiredAlly');
+          const onMap = item.maps[11];
+          return !(notInStore || championRequired || allyRequired || !onMap);
+        }).sort((a, b) => a.gold.total < b.gold.total ? -1 : 1),
         filterTree: Object.keys(response.data.tree).map(key => ({
           header: response.data.tree[key].header,
           tags: response.data.tree[key].tags.map(tag => ({
