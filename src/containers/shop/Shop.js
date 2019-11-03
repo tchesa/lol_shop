@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from '../../axios';
+// import axios from '../../axios';
 
 import classes from './shop.module.css';
 import Filter from '../../components/filter/Filter';
@@ -13,7 +13,8 @@ class Shop extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('item.json').then(response => {
+    // axios.get('item.json').then(response => {
+    fetch('item.json').then(response => response.json()).then(response => ({ data: response })).then(response => {
       console.log(response.data);
       this.setState({
         items: Object.keys(response.data.data).map(key => ({
@@ -44,8 +45,8 @@ class Shop extends React.Component {
     let node, tag;
     let found = false;
 
-    for (node = 0; !found &&   node < this.state.filterTree.length; node++) {
-      for (tag = 0; !found &&  tag < this.state.filterTree[node].tags.length; tag++) {
+    for (node = 0; !found && node < this.state.filterTree.length; node++) {
+      for (tag = 0; !found && tag < this.state.filterTree[node].tags.length; tag++) {
         if (this.state.filterTree[node].tags[tag].name === tagName) {
           found = true;
           node--;

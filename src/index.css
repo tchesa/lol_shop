@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  background-image: url(/static/media/background.9508fe83.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+
+html > :not(body) {
+  position: absolute;
+}
