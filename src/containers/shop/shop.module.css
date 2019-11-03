@@ -1,0 +1,16 @@
+.Shop {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Shop .SearchContainer {
+  width: 100%;
+}
+
+.Shop .FilterContainer {
+  width: 300px;
+}
+
+.Shop .ListContainer {
+  width: calc(100% - 300px);
+}
